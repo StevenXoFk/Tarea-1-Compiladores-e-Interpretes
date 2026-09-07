@@ -1,0 +1,21 @@
+tipo ::= 'void' | 'int' | 'float' | 'char'
+
+cero ::= 0
+cero_f ::= 0\.0
+ceros ::= cero ceros | ε
+punto ::= \.
+
+digito ::= '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+digitoN ::= '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+
+digitos ::= digito digitos | ε
+
+part_entera ::= digitoN digitos
+part_decimal ::= digitos digitoN
+part_decimal_esp ::= part_decimal ceros
+
+letra ::= 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'ñ' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M' | 'N' | 'Ñ' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' 
+
+lit_float ::= cero_f | cero punto part_decimal | part_entera punto part_decimal |part_entera punto cero | part_entera punto part_decimal_esp
+lit_int ::= cero | part_entera
+
