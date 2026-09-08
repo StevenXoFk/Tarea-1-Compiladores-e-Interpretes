@@ -5,8 +5,6 @@ cero ::= 0
 cero_f ::= 0\.0
 punto ::= \.
 
-ceros ::= cero*
-
 espacio ::= " "
 comillas ::= "'"
 comillas_dobles ::= '"'
@@ -19,13 +17,12 @@ digitos ::= digito*
 
 part_entera ::= digitoN digitos
 part_decimal ::= digitos digitoN
-part_decimal_esp ::= part_decimal ceros
 part_char ::= espacio | digito | letra | simbolo
 
 subpart_str ::= espacio | digito | letra | simbolo
 part_str ::= subpart_str*
 
-lit_float ::= cero_f | cero punto part_decimal | part_entera punto part_decimal |part_entera punto cero | part_entera punto part_decimal_esp
+lit_float ::= cero_f | cero punto part_decimal | part_entera punto part_decimal |part_entera punto cero
 lit_int ::= cero | part_entera
 lit_char ::= comillas part_char comillas
 lit_string ::= comillas_dobles part_str comillas_dobles
