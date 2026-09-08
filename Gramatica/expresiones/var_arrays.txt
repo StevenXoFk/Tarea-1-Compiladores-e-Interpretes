@@ -1,0 +1,7 @@
+part_id ::= [_a-zA-Z] | "_"
+id ::= part_id*
+
+tipo_arrays ::= "int" | "float"
+open_array ::= "¿:"
+close_array ::= ":?"
+val ::= "val"
