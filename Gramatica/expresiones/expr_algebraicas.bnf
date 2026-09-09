@@ -20,7 +20,7 @@ op_div_entera ::= "//"
 op_suma ::= "+"
 op_resta ::= "-"
 
-op_modulo ::= "%"
+op_modulo ::= "mod"
 
 literal_numerico ::= lit_int | lit_float
 literal ::= literal_numerico | lit_char | lit_string | lit_bool
@@ -29,7 +29,7 @@ acceso_arreglo ::= id open_bracket indice close_bracket
 
 argumento ::= literal | id | acceso_arreglo
 lista_argumentos ::= argumento (coma argumento)*
-llamada_funcion ::= id open_paren lista_argumentos_funcion? close_paren
+llamada_funcion ::= id open_paren lista_argumentos? close_paren
 
 expr_primaria ::= literal
                 | id

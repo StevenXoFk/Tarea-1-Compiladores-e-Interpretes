@@ -1,3 +1,4 @@
+; se esta usando literal_numerico de el archivo expr_algebraica.bnf
 resto_id ::= [_a-zA-Z0-9]
 part_id ::= [_a-zA-Z] 
 id ::= (part_id resto_id*)+
@@ -5,18 +6,34 @@ coma ::= ","
 
 tipo_var ::= "int" | "float" | "string" | "bool" | "char"
 tipo_arrays ::= "int" | "float"
-open_array ::= "¿:"
-close_array ::= ":?"
+open_llaves ::= "¿:"
+close_llaves ::= ":?"
 val ::= "val"
 fin_sentencia ::= "»"
 asign ::= "Ͱ"
-val_int_float ::= lit_int | lit_float
 
-valores ::= val_int_float (coma val_int_float)*
+valores ::= literal_numerico  (coma literal_numerico )*
 var_simple ::= tipo_var id
 
 ; creacion simple de variables tipo -> val (tipo_var) id »
 creacion_simple ::= val var_simple fin_sentencia
 
-; creacion asignacion para valor tipo -> val (tipo_var) id = valor »
-creacion_asign ::= val var_simple asign 
+; creacion asignacion para valor tipo -> val (tipo_var) id = expresion »
+creacion_asign ::= val var_simple asign expr_modulo fin_sentencia
+
+; asignacion a variable ya existente, sin val ni tipo -> id = expresion »
+asignacion ::= id asign expr_modulo fin_sentencia
+
+var_arreglo ::= tipo_arrays id
+
+; creacion de arreglo, tamaño implicito por cantidad de valores -> val (tipo_arrays) id = ¿:valores:? »
+creacion_arreglo ::= val var_arreglo asign open_llaves valores close_llaves fin_sentencia
+
+; asignacion a un elemento existente del arreglo -> id ʃ:indice:ʅ = expresion »
+asignacion_arreglo ::= acceso_arreglo asign expr_modulo fin_sentencia
+
+; sentencia de solo expresion, sin asignacion -> expresion » (ej. llamada_funcion, id++, id--)
+sentencia_expr ::= expr_modulo fin_sentencia
+
+; agrupa todas las sentencias de variables y arreglos para poder usarlas en bloques y funciones
+sentencia_var ::= creacion_simple | creacion_asign | asignacion | creacion_arreglo | asignacion_arreglo | sentencia_expr
