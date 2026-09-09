@@ -1,10 +1,11 @@
+; se esta usando coma y id del archivo var_arrays.bnf
+; ademas se esta usando lit_int, lit_float, lit_char, lit_string, lit_bool del archivo expr_literales.bnf
+
 open_bracket ::= "ʃ:"
 close_bracket ::= ":ʅ"
 
 open_paren ::= "є:"
 close_paren ::= ":э"
-
-coma ::= ","
 
 op_negativo ::= "-"
 op_incremento ::= "++"
@@ -26,7 +27,6 @@ literal ::= literal_numerico | lit_char | lit_string | lit_bool
 indice ::= id | lit_int
 acceso_arreglo ::= id open_bracket indice close_bracket
 
-
 argumento ::= literal | id | acceso_arreglo
 lista_argumentos ::= argumento (coma argumento)*
 llamada_funcion ::= id open_paren lista_argumentos_funcion? close_paren
@@ -43,7 +43,7 @@ expr_unaria ::= op_negativo literal_numerico
               | expr_primaria
 
 expr_potencia ::= expr_unaria op_potencia expr_potencia
-                 | expr_unaria
+                 | expr_unaria 
 
 expr_aditiva ::= expr_aditiva op_suma expr_potencia
                | expr_aditiva op_resta expr_potencia
