@@ -1,6 +1,3 @@
-tipo ::= "int" | "float" | "char" | "boolean" | "string"
-tipo_principal ::= "void"
-
 cero ::= 0
 cero_f ::= 0\.0
 punto ::= \.
@@ -9,7 +6,7 @@ espacio ::= " "
 comillas ::= "'"
 comillas_dobles ::= '"'
 letra ::= [a-zA-Z]
-simbolo_base ::= "!" | "#" | "$" | "%" | "&" | "(" | ")" | "*" | "+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" | "[" | "]" | "^" | "_" | "`" | "{" | "|" | "}" | "~"
+simbolo ::= "!" | "#" | "$" | "%" | "&" | "(" | ")" | "*" | "+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" | "[" | "]" | "^" | "_" | "`" | "{" | "|" | "}" | "~"
 
 digito ::= [0-9]
 digitoN ::= [1-9]
@@ -19,8 +16,7 @@ part_entera ::= digitoN digitos
 part_decimal ::= digitos digitoN
 part_char ::= espacio | digito | letra | simbolo
 
-subpart_str ::= espacio | digito | letra | simbolo
-part_str ::= subpart_str*
+part_str ::= part_char*
 
 lit_float ::= cero_f | cero punto part_decimal | part_entera punto part_decimal |part_entera punto cero
 lit_int ::= cero | part_entera
