@@ -1,0 +1,11 @@
+op_and ::= "λ"
+op_or ::= "θ"
+op_negacion ::= "Σ"
+
+op_logico ::= op_and | op_or
+
+operando_logico ::= expr_relacional | expr_negacion
+
+expr_negacion ::= op_negacion open_paren operando_logico close_paren
+
+expr_logica ::= open_paren operando_logico close_paren op_logico open_paren operando_logico close_paren | expr_negacion
