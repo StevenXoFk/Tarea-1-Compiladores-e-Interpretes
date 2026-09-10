@@ -1,0 +1,9 @@
+op_mayor ::= ">"
+op_menor ::= "<"
+op_mayor_igual ::= ">="
+op_menor_igual ::= "<="
+op_igual ::= "=="
+op_diferente ::= "!="
+
+op_relacional ::= op_mayor | op_menor | op_mayor_igual | op_menor_igual | op_igual | op_diferente
+expr_relacional ::= open_bracket expr_modulo close_bracket op_relacional open_bracket expr_modulo close_bracket
