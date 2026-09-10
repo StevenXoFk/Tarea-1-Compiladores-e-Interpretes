@@ -2,6 +2,8 @@ cero ::= 0
 cero_f ::= 0\.0
 punto ::= \.
 
+true ::= "true"
+false ::= "false"
 espacio ::= " "
 comillas ::= "'"
 comillas_dobles ::= '"'
@@ -22,4 +24,4 @@ lit_float ::= cero_f | cero punto part_decimal | part_entera punto part_decimal 
 lit_int ::= cero | part_entera
 lit_char ::= comillas part_char comillas
 lit_string ::= comillas_dobles part_str comillas_dobles
-lit_bool ::= "true" | "false"
+lit_bool ::= true | false
