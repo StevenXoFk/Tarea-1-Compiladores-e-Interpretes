@@ -27,15 +27,16 @@ literal ::= literal_numerico | lit_char | lit_string | lit_bool
 indice ::= id | lit_int
 acceso_arreglo ::= id open_bracket indice close_bracket
 
-argumento ::= literal | id | acceso_arreglo
-lista_argumentos ::= argumento (coma argumento)*
-llamada_funcion ::= id open_paren lista_argumentos? close_paren
+argumento_io ::= literal | id
+argumento_funcion ::= expr_modulo
+lista_argumentos_funcion ::= argumento_funcion (coma argumento_funcion)*
+llamada_funcion ::= id open_paren lista_argumentos_funcion? close_paren
 
 expr_primaria ::= literal
                 | id
                 | acceso_arreglo
                 | llamada_funcion
-                | open_paren expr_aditiva close_paren
+                | open_paren expr_modulo close_paren
 
 expr_unaria ::= op_negativo literal_numerico
               | id op_incremento
@@ -56,3 +57,4 @@ expr_multiplicativa ::= expr_multiplicativa op_mult expr_aditiva
 
 expr_modulo ::= expr_modulo op_modulo expr_multiplicativa
               | expr_multiplicativa
+

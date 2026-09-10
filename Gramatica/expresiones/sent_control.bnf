@@ -1,0 +1,13 @@
+; se esta usando expr_modulo, expr_relacional, expr_logica de sus respectivos archivos
+; se esta usando fin_sentencia de el archivo var_arrays.bnf
+
+
+expr_retorno ::= expr_modulo
+               | expr_relacional
+               | expr_logica
+
+
+sent_return ::= "return" expr_retorno fin_sentencia
+              | "return" fin_sentencia
+
+sent_break ::= "break" fin_sentencia

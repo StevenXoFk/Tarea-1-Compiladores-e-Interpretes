@@ -1,0 +1,21 @@
+; se está usando espacio, digito, letra del archivo expr_literales.bnf
+
+
+salto_linea ::= "\n"
+tabulador ::= "\t"
+apertura_linea ::= "|"
+apertura_bloque ::= "¡"
+cierre_bloque ::= "!"
+
+simbolo_comentario ::= "#" | "$" | "%" | "&" | "(" | ")" | "*" | "+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" | "[" | "\" | "]" | "^" | "_" | "`" | "{" | "|" | "}" | "~" | "'" | '"' | "¡" | "¿"
+
+caracter_linea ::= espacio | tabulador | digito | letra | simbolo_comentario
+contenido_linea ::= caracter_linea* salto_linea
+comentario_linea ::= apertura_linea contenido_linea
+
+
+caracter_bloque ::= espacio | tabulador | digito | letra | simbolo_comentario | salto_linea
+contenido_bloque ::= caracter_bloque*
+comentario_bloque ::= apertura_bloque contenido_bloque cierre_bloque
+
+comentario ::= comentario_linea | comentario_bloque
