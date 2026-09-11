@@ -11,6 +11,8 @@ break ::= "break"
 if ::= "if"
 elif ::= "elif"
 else ::= "else"
+while ::= "while"
+for ::= "for"
 
 sent_return ::= return expr_retorno fin_sentencia | return fin_sentencia
 
