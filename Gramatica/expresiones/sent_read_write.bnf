@@ -2,8 +2,11 @@
 ; se está usando open_paren, close_paren del archivo var_arrays.bnf
 ; se está usando fin_sentencia del archivo var_arrays.bnf
 
+read ::= "read"
+write ::= "write"
+
 arg_write ::= lit_string | lit_int | lit_float | lit_bool | id
 arg_read ::= id
 
-sent_read ::= "read" open_paren arg_read close_paren fin_sentencia
-sent_write ::= "write" open_paren arg_write close_paren fin_sentencia
+sent_read ::= read open_paren arg_read close_paren fin_sentencia
+sent_write ::= write open_paren arg_write close_paren fin_sentencia

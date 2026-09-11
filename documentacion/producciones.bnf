@@ -1,0 +1,220 @@
+cero ::= 0
+cero_f ::= 0\.0
+punto ::= \.
+true ::= "true"
+false ::= "false"
+espacio ::= " "
+comillas ::= "'"
+comillas_dobles ::= '"'
+letra ::= [a-zA-Z]
+simbolo ::= "!" | "#" | "$" | "%" | "&" | "(" | ")" | "*" | "+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" | "[" | "]" | "^" | "_" | "`" | "{" | "|" | "}" | "~" | "¿" | "¡"
+
+digito ::= [0-9]
+digitoN ::= [1-9]
+digitos ::= digito*
+
+part_entera ::= digitoN digitos
+part_decimal ::= digitos digitoN
+part_char ::= espacio | digito | letra | simbolo
+
+part_str ::= part_char*
+
+lit_float ::= cero_f | cero punto part_decimal | part_entera punto part_decimal |part_entera punto cero
+lit_int ::= cero | part_entera
+lit_char ::= comillas part_char comillas
+lit_string ::= comillas_dobles part_str comillas_dobles
+lit_bool ::= true | false
+
+open_bracket ::= "ʃ:"
+close_bracket ::= ":ʅ"
+open_paren ::= "є:"
+close_paren ::= ":э"
+op_negativo ::= "-"
+op_incremento ::= "++"
+op_decremento ::= "--"
+op_potencia ::= "pot"
+op_mult ::= "*"
+op_div_decimal ::= "/"
+op_div_entera ::= "//"
+op_suma ::= "+"
+op_resta ::= "-"
+op_modulo ::= "mod"
+
+literal_numerico ::= lit_int | lit_float
+literal ::= literal_numerico | lit_char | lit_string | lit_bool
+indice ::= id | lit_int
+acceso_arreglo ::= id open_bracket indice close_bracket
+
+argumento_io ::= literal | id
+argumento_funcion ::= expr_modulo
+lista_argumentos_funcion ::= argumento_funcion (coma argumento_funcion)*
+llamada_funcion ::= id open_paren lista_argumentos_funcion? close_paren
+
+expr_primaria ::= literal
+                | id
+                | acceso_arreglo
+                | llamada_funcion
+                | open_paren expr_modulo close_paren
+
+expr_negativo ::= op_negativo literal_numerico
+                | expr_primaria
+
+expr_potencia ::= expr_negativo op_potencia expr_potencia
+                 | expr_negativo
+
+expr_aditiva ::= expr_aditiva op_suma expr_potencia
+               | expr_aditiva op_resta expr_potencia
+               | expr_potencia
+
+expr_multiplicativa ::= expr_multiplicativa op_mult expr_aditiva
+                      | expr_multiplicativa op_div_decimal expr_aditiva
+                      | expr_multiplicativa op_div_entera expr_aditiva
+                      | expr_aditiva
+
+expr_modulo ::= expr_modulo op_modulo expr_multiplicativa
+              | expr_multiplicativa
+
+expr_incremento ::= id op_incremento
+                 |  id op_decremento
+
+resto_id ::= [_a-zA-Z0-9]
+part_id ::= [_a-zA-Z] 
+id ::= (part_id resto_id*)+
+coma ::= ","
+int ::= "int"
+float ::= "float"
+string ::= "string"
+bool ::= "bool"
+char ::= "char"
+tipo_var ::= int | float | string | bool | char
+tipo_arrays ::= int | float
+open_llaves ::= "¿:"
+close_llaves ::= ":?"
+val ::= "val"
+fin_sentencia ::= "»"
+asign ::= "Ͱ"
+
+valores ::= literal_numerico  (coma literal_numerico )*
+var_simple ::= tipo_var id
+
+creacion_simple ::= val var_simple fin_sentencia
+
+valor_asignable ::= expr_modulo | expr_relacional | expr_logica
+
+creacion_asign ::= val var_simple asign valor_asignable fin_sentencia
+
+asignacion ::= id asign valor_asignable fin_sentencia
+
+var_arreglo ::= tipo_arrays id
+
+creacion_arreglo ::= val var_arreglo asign open_llaves valores close_llaves fin_sentencia
+
+asignacion_arreglo ::= acceso_arreglo asign valor_asignable fin_sentencia
+
+sentencia_expr ::= expr_modulo fin_sentencia
+                 | expr_incremento fin_sentencia
+
+sentencia_var ::= creacion_simple | creacion_asign | asignacion | creacion_arreglo | asignacion_arreglo | sentencia_expr
+
+op_mayor ::= ">"
+op_menor ::= "<"
+op_mayor_igual ::= ">="
+op_menor_igual ::= "<="
+op_igual ::= "=="
+op_diferente ::= "!="
+
+op_orden ::= op_mayor | op_menor | op_mayor_igual | op_menor_igual
+op_igualdad ::= op_igual | op_diferente
+
+operando_rel_orden ::= expr_modulo
+operando_rel_igualdad ::= expr_modulo | lit_bool | lit_char | id
+
+expr_rel_orden ::= open_bracket operando_rel_orden close_bracket op_orden open_bracket operando_rel_orden close_bracket
+
+expr_rel_igualdad ::= open_bracket operando_rel_igualdad close_bracket op_igualdad open_bracket operando_rel_igualdad close_bracket
+
+expr_relacional ::= expr_rel_orden | expr_rel_igualdad
+
+op_and ::= "λ"
+op_or ::= "θ"
+op_negacion ::= "Σ"
+
+op_logico ::= op_and | op_or
+
+operando_logico ::= expr_relacional | expr_negacion | lit_bool | id
+
+expr_negacion ::= op_negacion open_paren operando_logico close_paren
+
+expr_logica ::= open_paren operando_logico close_paren op_logico open_paren operando_logico close_paren | expr_negacion
+
+salto_linea ::= "\n"
+tabulador ::= "\t"
+apertura_linea ::= "|"
+apertura_bloque ::= "¡"
+cierre_bloque ::= "!"
+simbolo_comentario ::= "#" | "$" | "%" | "&" | "(" | ")" | "*" | "+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" | "[" | "\" | "]" | "^" | "_" | "`" | "{" | "|" | "}" | "~" | "'" | '"' | "¡" | "¿"
+
+caracter_linea ::= espacio | tabulador | digito | letra | simbolo_comentario
+contenido_linea ::= caracter_linea* salto_linea
+comentario_linea ::= apertura_linea contenido_linea
+
+caracter_bloque ::= espacio | tabulador | digito | letra | simbolo_comentario | salto_linea
+contenido_bloque ::= caracter_bloque*
+comentario_bloque ::= apertura_bloque contenido_bloque cierre_bloque
+
+read ::= "read"
+write ::= "write"
+
+comentario ::= comentario_linea | comentario_bloque
+
+arg_write ::= lit_string | lit_int | lit_float | lit_bool | id
+arg_read ::= id
+
+sent_read ::= read open_paren arg_read close_paren fin_sentencia
+sent_write ::= write open_paren arg_write close_paren fin_sentencia
+
+expr_retorno ::= expr_modulo
+               | expr_relacional
+               | expr_logica
+
+return ::= "return"
+break ::= "break"
+if ::= "if"
+elif ::= "elif"
+else ::= "else"
+while ::= "while"
+for ::= "for"
+
+sent_return ::= return expr_retorno fin_sentencia | return fin_sentencia
+
+sent_break ::= break fin_sentencia
+
+condicion ::= expr_relacional | expr_logica
+
+bloque ::= open_llaves sentencia* close_llaves
+
+sentencia ::= sentencia_var | sent_return | sent_break | sent_read | sent_write | sent_if | sent_while | sent_for
+
+sent_if ::= if condicion bloque sent_elif* sent_else?
+sent_elif ::= elif condicion bloque
+sent_else ::= else bloque
+
+sent_while ::= while condicion bloque
+sent_for ::= for sentencia_var condicion fin_sentencia expr_incremento bloque
+
+void ::= "void"
+principal ::= "principal"
+
+tipo_retorno ::= int | float | char | bool
+
+lista_parametros ::= var_simple (coma var_simple)*
+
+funcion ::= tipo_retorno id open_paren lista_parametros? close_paren bloque
+
+funcion_principal ::= void principal open_paren close_paren bloque
+
+declaracion_global ::= creacion_simple | creacion_asign | creacion_arreglo
+
+elemento_programa ::= declaracion_global | funcion
+
+programa ::= elemento_programa* funcion_principal elemento_programa*
