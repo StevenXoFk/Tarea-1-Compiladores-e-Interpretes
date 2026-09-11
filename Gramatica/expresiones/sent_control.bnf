@@ -11,6 +11,8 @@ break ::= "break"
 if ::= "if"
 elif ::= "elif"
 else ::= "else"
+while ::= "while"
+for ::= "for"
 
 sent_return ::= return expr_retorno fin_sentencia | return fin_sentencia
 
@@ -27,4 +29,4 @@ sent_elif ::= elif condicion bloque
 sent_else ::= else bloque
 
 sent_while ::= while condicion bloque
-sent_for ::= for sentencia_var condicion fin_sentencia expr_unaria bloque
+sent_for ::= for sentencia_var condicion fin_sentencia expr_incremento bloque
