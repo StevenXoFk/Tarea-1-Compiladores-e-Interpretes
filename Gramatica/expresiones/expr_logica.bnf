@@ -4,7 +4,7 @@ op_negacion ::= "Σ"
 
 op_logico ::= op_and | op_or
 
-operando_logico ::= expr_relacional | expr_negacion
+operando_logico ::= expr_relacional | expr_negacion | lit_bool | id
 
 expr_negacion ::= op_negacion open_paren operando_logico close_paren
 

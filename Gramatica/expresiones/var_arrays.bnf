@@ -23,11 +23,13 @@ var_simple ::= tipo_var id
 ; creacion simple de variables tipo -> val (tipo_var) id »
 creacion_simple ::= val var_simple fin_sentencia
 
+valor_asignable ::= expr_modulo | expr_relacional | expr_logica
+
 ; creacion asignacion para valor tipo -> val (tipo_var) id = expresion »
-creacion_asign ::= val var_simple asign expr_modulo fin_sentencia
+creacion_asign ::= val var_simple asign valor_asignable fin_sentencia
 
 ; asignacion a variable ya existente, sin val ni tipo -> id = expresion »
-asignacion ::= id asign expr_modulo fin_sentencia
+asignacion ::= id asign valor_asignable fin_sentencia
 
 var_arreglo ::= tipo_arrays id
 
@@ -35,7 +37,7 @@ var_arreglo ::= tipo_arrays id
 creacion_arreglo ::= val var_arreglo asign open_llaves valores close_llaves fin_sentencia
 
 ; asignacion a un elemento existente del arreglo -> id ʃ:indice:ʅ = expresion »
-asignacion_arreglo ::= acceso_arreglo asign expr_modulo fin_sentencia
+asignacion_arreglo ::= acceso_arreglo asign valor_asignable fin_sentencia
 
 sentencia_expr ::= expr_modulo fin_sentencia
                  | expr_incremento fin_sentencia
