@@ -29,4 +29,4 @@ sent_elif ::= elif condicion bloque
 sent_else ::= else bloque
 
 sent_while ::= while condicion bloque
-sent_for ::= for sentencia_var condicion fin_sentencia expr_unaria bloque
+sent_for ::= for sentencia_var condicion fin_sentencia expr_incremento bloque

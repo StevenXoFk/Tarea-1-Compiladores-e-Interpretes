@@ -37,8 +37,8 @@ creacion_arreglo ::= val var_arreglo asign open_llaves valores close_llaves fin_
 ; asignacion a un elemento existente del arreglo -> id ʃ:indice:ʅ = expresion »
 asignacion_arreglo ::= acceso_arreglo asign expr_modulo fin_sentencia
 
-; sentencia de solo expresion, sin asignacion -> expresion » (ej. llamada_funcion, id++, id--)
 sentencia_expr ::= expr_modulo fin_sentencia
+                 | expr_incremento fin_sentencia
 
 ; agrupa todas las sentencias de variables y arreglos para poder usarlas en bloques y funciones
 sentencia_var ::= creacion_simple | creacion_asign | asignacion | creacion_arreglo | asignacion_arreglo | sentencia_expr

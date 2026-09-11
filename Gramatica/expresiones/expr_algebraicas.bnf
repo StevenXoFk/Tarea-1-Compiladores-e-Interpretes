@@ -38,13 +38,11 @@ expr_primaria ::= literal
                 | llamada_funcion
                 | open_paren expr_modulo close_paren
 
-expr_unaria ::= op_negativo literal_numerico
-              | id op_incremento
-              | id op_decremento
-              | expr_primaria
+expr_negativo ::= op_negativo literal_numerico
+                | expr_primaria
 
-expr_potencia ::= expr_unaria op_potencia expr_potencia
-                 | expr_unaria 
+expr_potencia ::= expr_negativo op_potencia expr_potencia
+                 | expr_negativo
 
 expr_aditiva ::= expr_aditiva op_suma expr_potencia
                | expr_aditiva op_resta expr_potencia
@@ -58,3 +56,5 @@ expr_multiplicativa ::= expr_multiplicativa op_mult expr_aditiva
 expr_modulo ::= expr_modulo op_modulo expr_multiplicativa
               | expr_multiplicativa
 
+expr_incremento ::= id op_incremento
+                 |  id op_decremento
