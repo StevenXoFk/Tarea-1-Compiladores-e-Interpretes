@@ -1,0 +1,8 @@
+Compiladores e Intérpretes II Semestre, 2026
+Tarea #1
+
+Integrantes: 
+    - Angelo Piedra Castro - 2024101262
+    - Elian Trejos Quiros - 2024143262
+
+Estatus de la entrega: [MuyBuena]
