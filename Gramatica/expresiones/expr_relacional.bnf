@@ -1,0 +1,18 @@
+op_mayor ::= ">"
+op_menor ::= "<"
+op_mayor_igual ::= ">="
+op_menor_igual ::= "<="
+op_igual ::= "=="
+op_diferente ::= "!="
+
+op_orden ::= op_mayor | op_menor | op_mayor_igual | op_menor_igual
+op_igualdad ::= op_igual | op_diferente
+
+operando_rel_orden ::= expr_modulo
+operando_rel_igualdad ::= expr_modulo | lit_bool | lit_char | id
+
+expr_rel_orden ::= open_bracket operando_rel_orden close_bracket op_orden open_bracket operando_rel_orden close_bracket
+
+expr_rel_igualdad ::= open_bracket operando_rel_igualdad close_bracket op_igualdad open_bracket operando_rel_igualdad close_bracket
+
+expr_relacional ::= expr_rel_orden | expr_rel_igualdad

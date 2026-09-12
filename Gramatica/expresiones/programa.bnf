@@ -1,0 +1,5 @@
+declaracion_global ::= creacion_simple | creacion_asign | creacion_arreglo
+
+elemento_programa ::= declaracion_global | funcion
+
+programa ::= elemento_programa* funcion_principal elemento_programa*

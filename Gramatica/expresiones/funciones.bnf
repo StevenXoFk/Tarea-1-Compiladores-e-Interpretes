@@ -1,0 +1,10 @@
+void ::= "void"
+principal ::= "principal"
+
+tipo_retorno ::= int | float | char | bool
+
+lista_parametros ::= var_simple (coma var_simple)*
+
+funcion ::= tipo_retorno id open_paren lista_parametros? close_paren bloque
+
+funcion_principal ::= void principal open_paren close_paren bloque

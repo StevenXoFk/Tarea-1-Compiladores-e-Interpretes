@@ -1,0 +1,60 @@
+; se esta usando coma y id del archivo var_arrays.bnf
+; ademas se esta usando lit_int, lit_float, lit_char, lit_string, lit_bool del archivo expr_literales.bnf
+
+open_bracket ::= "ʃ:"
+close_bracket ::= ":ʅ"
+
+open_paren ::= "є:"
+close_paren ::= ":э"
+
+op_negativo ::= "-"
+op_incremento ::= "++"
+op_decremento ::= "--"
+
+op_potencia ::= "pot"
+
+op_mult ::= "*"
+op_div_decimal ::= "/"
+op_div_entera ::= "//"
+
+op_suma ::= "+"
+op_resta ::= "-"
+
+op_modulo ::= "mod"
+
+literal_numerico ::= lit_int | lit_float
+literal ::= literal_numerico | lit_char | lit_string | lit_bool
+indice ::= id | lit_int
+acceso_arreglo ::= id open_bracket indice close_bracket
+
+argumento_io ::= literal | id
+argumento_funcion ::= expr_modulo
+lista_argumentos_funcion ::= argumento_funcion (coma argumento_funcion)*
+llamada_funcion ::= id open_paren lista_argumentos_funcion? close_paren
+
+expr_primaria ::= literal
+                | id
+                | acceso_arreglo
+                | llamada_funcion
+                | open_paren expr_modulo close_paren
+
+expr_negativo ::= op_negativo literal_numerico
+                | expr_primaria
+
+expr_potencia ::= expr_negativo op_potencia expr_potencia
+                 | expr_negativo
+
+expr_aditiva ::= expr_aditiva op_suma expr_potencia
+               | expr_aditiva op_resta expr_potencia
+               | expr_potencia
+
+expr_multiplicativa ::= expr_multiplicativa op_mult expr_aditiva
+                      | expr_multiplicativa op_div_decimal expr_aditiva
+                      | expr_multiplicativa op_div_entera expr_aditiva
+                      | expr_aditiva
+
+expr_modulo ::= expr_modulo op_modulo expr_multiplicativa
+              | expr_multiplicativa
+
+expr_incremento ::= id op_incremento
+                 |  id op_decremento

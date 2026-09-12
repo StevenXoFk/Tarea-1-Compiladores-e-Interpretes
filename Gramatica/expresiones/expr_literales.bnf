@@ -1,0 +1,27 @@
+cero ::= 0
+cero_f ::= 0\.0
+punto ::= \.
+
+true ::= "true"
+false ::= "false"
+espacio ::= " "
+comillas ::= "'"
+comillas_dobles ::= '"'
+letra ::= [a-zA-Z]
+simbolo ::= "!" | "#" | "$" | "%" | "&" | "(" | ")" | "*" | "+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" | "[" | "]" | "^" | "_" | "`" | "{" | "|" | "}" | "~" | "¿" | "¡"
+
+digito ::= [0-9]
+digitoN ::= [1-9]
+digitos ::= digito*
+
+part_entera ::= digitoN digitos
+part_decimal ::= digitos digitoN
+part_char ::= espacio | digito | letra | simbolo
+
+part_str ::= part_char*
+
+lit_float ::= cero_f | cero punto part_decimal | part_entera punto part_decimal |part_entera punto cero
+lit_int ::= cero | part_entera
+lit_char ::= comillas part_char comillas
+lit_string ::= comillas_dobles part_str comillas_dobles
+lit_bool ::= true | false
